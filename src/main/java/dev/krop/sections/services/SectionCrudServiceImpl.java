@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.UUID;
 
 @Service
-public class SectionCrudServiceImpl implements SectionCrudService {
+public class SectionCrudServiceImpl implements CrudService<Section> {
 
     private final SectionRepository repository;
     private final MapperService<Section, SectionEntity> mapperService;
@@ -25,25 +25,25 @@ public class SectionCrudServiceImpl implements SectionCrudService {
     }
 
     @Override
-    public List<Section> getAllSection() {
+    public List<Section> getAll() {
         List<SectionEntity> sections = repository.findAll();
         return mapperService.mapListEntityToListModel(sections);
     }
 
     @Override
-    public Section getSectionByName(String name) {
+    public Section getByName(String name) {
         SectionEntity entity = repository.getByName(name);
         return mapperService.mapEntityToModel(entity);
     }
 
     @Override
-    public Section addSection(Section section) {
+    public Section add(Section section) {
         SectionEntity entity = repository.saveAndFlush(mapperService.mapModelToEntity(section));
         return mapperService.mapEntityToModel(entity);
     }
 
     @Override
-    public void updateSection(Section section) {
+    public void update(Section section) {
         SectionEntity savedEntity = repository.getByName(section.getName());
         SectionEntity newEntity = mapperService.mapModelToEntityWithSavedEntity(savedEntity, section);
         newEntity.setId(savedEntity.getId());
@@ -51,7 +51,7 @@ public class SectionCrudServiceImpl implements SectionCrudService {
     }
 
     @Override
-    public void deleteSection(String name) {
+    public void delete(String name) {
         UUID sectionId = repository.getByName(name).getId();
         repository.deleteById(sectionId);
     }

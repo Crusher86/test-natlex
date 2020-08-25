@@ -1,7 +1,7 @@
 package dev.krop.sections.controllers;
 
 import dev.krop.sections.models.Section;
-import dev.krop.sections.services.SectionCrudService;
+import dev.krop.sections.services.CrudService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -11,35 +11,35 @@ import java.util.List;
 @RequestMapping("section")
 public class SectionCrudController {
 
-    private final SectionCrudService sectionService;
+    private final CrudService<Section> sectionService;
 
     @Autowired
-    public SectionCrudController(SectionCrudService sectionService) {
+    public SectionCrudController(CrudService<Section> sectionService) {
         this.sectionService = sectionService;
     }
 
     @GetMapping("/")
     public List<Section> getSections() {
-        return sectionService.getAllSection();
+        return sectionService.getAll();
     }
 
     @GetMapping("/{name}")
     public Section getSection(@PathVariable ("name") String name) {
-        return sectionService.getSectionByName(name);
+        return sectionService.getByName(name);
     }
 
     @PostMapping()
     public Section addSection(@RequestBody Section section) {
-        return sectionService.addSection(section);
+        return sectionService.add(section);
     }
 
     @PutMapping()
     public void updateSection(@RequestBody Section section) {
-        sectionService.updateSection(section);
+        sectionService.update(section);
     }
 
     @DeleteMapping("/{name}")
     public void deleteSection(@PathVariable ("name") String name) {
-        sectionService.deleteSection(name);
+        sectionService.delete(name);
     }
 }
