@@ -1,0 +1,15 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/db_nx?currentSchema=test
+    username: krop
+    password: 12345
+  jpa:
+    properties:
+      HB2DDLAuto: validate
+      defaultSchema: public
+      showSQL: true
+      formatSQL: true
+      hibernate.hbm2ddl.auto: validate
+
+server:
+  port: 9999
