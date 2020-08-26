@@ -2,14 +2,18 @@ package dev.krop.sections.controllers;
 
 import dev.krop.sections.services.IEService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.FileUrlResource;
+import org.springframework.core.io.Resource;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
-import java.io.IOException;
+import java.io.File;
+import java.net.MalformedURLException;
+
+
 
 @RestController
 public class IEController {
@@ -22,17 +26,39 @@ public class IEController {
     }
 
     @GetMapping("/export")
-    public void exportData(@RequestBody String path) throws IOException {
-        service.exportData(path);
+    public long exportData() {
+        return service.exportData();
     }
 
-    @GetMapping("/import")
-    public void importData(@RequestBody String path) throws IOException {
-        service.importData(path);
+    @GetMapping("/export/{id}")
+    public String statusExport(@PathVariable ("id") long id) {
+        return service.getStatus(id);
     }
 
-    @ExceptionHandler(IOException.class)
-    public ResponseEntity<IOException> exceptionHandler(IOException exception) {
-        return new ResponseEntity<>(exception, HttpStatus.INTERNAL_SERVER_ERROR);
+    @GetMapping(path = "/export/{id}/file", produces = MediaType.APPLICATION_OCTET_STREAM_VALUE)
+    public ResponseEntity<Resource> getExportFile(@PathVariable ("id") long id) throws MalformedURLException {
+
+        File file = service.getExportFile(id);
+        Resource resource = new FileUrlResource(file.getPath());
+        return ResponseEntity
+                .ok()
+                .contentType(MediaType.APPLICATION_OCTET_STREAM)
+                .header("Content-Disposition", "attachment; filename=\"" + file.getName() + "\"" )
+                .body(resource);
+    }
+
+    @PostMapping("/import")
+    public long importData(@RequestBody MultipartFile file) {
+        return service.importData(file);
+    }
+
+    @GetMapping("/import/{id}")
+    public String statusImport(@PathVariable ("id") long id) {
+        return service.getStatus(id);
+    }
+
+    @ExceptionHandler(RuntimeException.class)
+    public ResponseEntity<String> exceptionHandler(RuntimeException exception) {
+        return new ResponseEntity<>(exception.getLocalizedMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
     }
 }
