@@ -8,6 +8,4 @@ import java.util.UUID;
 
 @Repository
 public interface IERepository extends JpaRepository<IEStatusEntity, UUID> {
-
-     IEStatusEntity getByJobId(long jobId);
 }

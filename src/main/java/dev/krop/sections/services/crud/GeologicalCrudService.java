@@ -1,8 +1,9 @@
-package dev.krop.sections.services;
+package dev.krop.sections.services.crud;
 
 import dev.krop.sections.models.GeologicalObject;
 import dev.krop.sections.repositories.GeologicalObjectRepository;
 import dev.krop.sections.repositories.entities.GeologicalObjectEntity;
+import dev.krop.sections.services.mapping.MapperGeologicalObjectService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

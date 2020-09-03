@@ -1,4 +1,4 @@
-package dev.krop.sections.services;
+package dev.krop.sections.services.mapping;
 
 import dev.krop.sections.models.GeologicalObject;
 import dev.krop.sections.models.Section;

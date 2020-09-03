@@ -13,7 +13,7 @@ import java.util.UUID;
 @Data
 @Entity
 @NoArgsConstructor
-@Table(name = "sections")
+@Table(name = "sections", uniqueConstraints = @UniqueConstraint(columnNames = "name"))
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class SectionEntity {
 

@@ -1,7 +1,7 @@
 package dev.krop.sections.controllers;
 
 import dev.krop.sections.models.Section;
-import dev.krop.sections.services.CrudService;
+import dev.krop.sections.services.crud.CrudService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

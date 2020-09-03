@@ -1,6 +1,6 @@
 package dev.krop.sections.repositories.entities;
 
-import dev.krop.sections.utils.Generator;
+import dev.krop.sections.services.ie.Status;
 import lombok.AccessLevel;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -21,11 +21,9 @@ public class IEStatusEntity {
     @Column(name = "id")
     UUID id;
 
-    @Column(name = "job_id")
-    Long jobId;
-
+    @Enumerated
     @Column(name = "job_status")
-    String jobStatus;
+    Status jobStatus;
 
     @Column(name = "type")
     String type;
@@ -33,10 +31,9 @@ public class IEStatusEntity {
     @Column(name = "path")
     String path;
 
-    public IEStatusEntity(String jobStatus, String type, String path) {
+    public IEStatusEntity(Status jobStatus, String type, String path) {
         this.jobStatus = jobStatus;
         this.type = type;
         this.path = path;
-        this.jobId = Generator.generateJobId();
     }
 }

@@ -1,7 +1,8 @@
-package dev.krop.sections.services;
+package dev.krop.sections.services.mapping;
 
 import dev.krop.sections.models.GeologicalObject;
 import dev.krop.sections.repositories.entities.GeologicalObjectEntity;
+import dev.krop.sections.services.mapping.MapperService;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;

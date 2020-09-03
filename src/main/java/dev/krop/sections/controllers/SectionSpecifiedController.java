@@ -1,7 +1,7 @@
 package dev.krop.sections.controllers;
 
 import dev.krop.sections.models.Section;
-import dev.krop.sections.services.SectionSpecifiedService;
+import dev.krop.sections.services.crud.SectionSpecifiedService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;

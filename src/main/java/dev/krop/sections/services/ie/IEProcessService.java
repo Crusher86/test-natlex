@@ -1,4 +1,4 @@
-package dev.krop.sections.services;
+package dev.krop.sections.services.ie;
 
 import org.springframework.web.multipart.MultipartFile;
 

@@ -1,8 +1,9 @@
-package dev.krop.sections.services;
+package dev.krop.sections.services.crud;
 
 import dev.krop.sections.models.Section;
 import dev.krop.sections.repositories.SectionRepository;
 import dev.krop.sections.repositories.entities.SectionEntity;
+import dev.krop.sections.services.mapping.MapperService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

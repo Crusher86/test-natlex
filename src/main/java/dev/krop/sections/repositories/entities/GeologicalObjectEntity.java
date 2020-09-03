@@ -14,7 +14,7 @@ import java.util.UUID;
 @Data
 @Entity
 @NoArgsConstructor
-@Table(name = "geological_objects")
+@Table(name = "geological_objects", uniqueConstraints = @UniqueConstraint(columnNames = "name"))
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class GeologicalObjectEntity {
 

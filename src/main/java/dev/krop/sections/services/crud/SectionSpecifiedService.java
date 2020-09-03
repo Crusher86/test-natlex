@@ -1,4 +1,4 @@
-package dev.krop.sections.services;
+package dev.krop.sections.services.crud;
 
 import dev.krop.sections.models.Section;
 
